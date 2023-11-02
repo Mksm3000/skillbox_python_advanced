@@ -1,5 +1,6 @@
 """
-Реализуйте endpoint, который показывает превью файла, принимая на вход два параметра: SIZE (int) и RELATIVE_PATH —
+Реализуйте endpoint, который показывает превью файла, принимая на вход два параметра:
+SIZE (int) и RELATIVE_PATH —
 и возвращая первые SIZE символов файла по указанному в RELATIVE_PATH пути.
 
 Endpoint должен вернуть страницу с двумя строками.
@@ -17,8 +18,9 @@ result_size — длина result_text в символах.
 
 Пример:
 
-docs/simple.txt:
-hello world!
+docs/simple.txt
+homework/simple.txt
+
 
 /preview/8/docs/simple.txt
 /home/user/module_2/docs/simple.txt 8
@@ -30,13 +32,26 @@ hello world!
 """
 
 from flask import Flask
+import os
+from pprint import pprint
 
 app = Flask(__name__)
 
 
 @app.route("/head_file/<int:size>/<path:relative_path>")
 def head_file(size: int, relative_path: str):
-    ...
+    parent_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    abs_path = os.path.abspath(os.path.join(parent_dir, relative_path))
+
+    with open(abs_path, 'r', encoding='utf-8') as file:
+        result_size = len(file.read())
+        if result_size > size:
+            result_size = size
+
+    with open(abs_path, 'r', encoding='utf-8') as file:
+        result_text = file.read(size)
+
+    return f'<b>{abs_path}</b> {result_size} <br> {result_text}'
 
 
 if __name__ == "__main__":
