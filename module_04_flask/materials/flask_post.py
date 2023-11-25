@@ -18,15 +18,15 @@ def _sum():
 
 @app.route("/sum2", methods=["POST"])
 def _sum2():
-    form_data = request.get_data(as_text=True)
-    request_data = unquote_plus(form_data)
+    form_data = request.get_data(as_text=True)  # важный момент!!!
+    request_data = unquote_plus(form_data)  # важный момент!!!
 
     arrays = {}
 
     for encoded_chunk in request_data.split("&"):
-        k, v = encoded_chunk.split("=")
+        key, value = encoded_chunk.split("=")
 
-        arrays[k] = [int(it) for it in v.split(",")]
+        arrays[key] = [int(it) for it in value.split(",")]
 
     result_str = ",".join(
         str(a1 + a2) for a1, a2 in zip(arrays["array1"], arrays["array2"])
@@ -46,6 +46,21 @@ def _sum3_json():
     )
 
     return f"Your result is [{result_str}]"
+
+
+@app.route("/shift", methods=["POST"])
+def _shift():
+    # [1, 2, 3, 5, -8, -6, -1, 0] или [2, 3, 4, 5, 0, 1]
+    form_data = request.get_data(as_text=True)
+    request_data = unquote_plus(form_data)
+
+    data_string = request_data.split('=')[1]
+    data = list(map(int, data_string.split(',')))
+    min_value = min(data)
+    min_index = int(data.index(min_value))
+    shift_data = data[min_index:]+data[:min_index]
+
+    return f"Shift is {min_index}. Shifted list is {shift_data}"
 
 
 if __name__ == "__main__":
