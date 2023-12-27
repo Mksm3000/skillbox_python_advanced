@@ -18,6 +18,7 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
 import itertools
 import logging
 import random
+import re
 from collections import deque
 from dataclasses import dataclass
 from typing import Optional
@@ -56,7 +57,7 @@ def walk(root: BinaryTreeNode):
             queue.append(node.right)
 
 
-counter = itertools.count(random.randint(1, 10 ** 6))
+counter = itertools.count(random.randint(a=1, b=10 ** 6))
 
 
 def get_tree(max_depth: int, level: int = 1) -> Optional[BinaryTreeNode]:
@@ -70,8 +71,58 @@ def get_tree(max_depth: int, level: int = 1) -> Optional[BinaryTreeNode]:
     return node
 
 
+def search(data: dict[int, BinaryTreeNode]) -> int:
+    leaves = set()
+    champion = -1
+
+    for key, value in data.items():
+        # print(key, value.left, value.right)
+
+        if value.left is not None:
+            leaves.add(value.left.val)
+        if value.right is not None:
+            leaves.add(value.right.val)
+
+    print(leaves)
+
+    for key in data.keys():
+        if key not in leaves:
+            champion = key
+
+    return champion
+
+
 def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
-    pass
+    # Генерируем само дерево (словарь)
+    tree: dict[int, BinaryTreeNode] = {}
+    # Создаем паттерн по которому будем доставать нужно значение
+    pattern: str = r"\d+"
+
+    # идем циклом по логам
+    with open(path_to_log_file) as log:
+        for line in log.readlines():
+
+            # Получаем нужные значения из строк лога, по которым будем создавать узлы и если есть ветку
+            values: list[int] = list(map(int, re.findall(pattern, line)))
+
+            # Проверяем на наличие INFO - это по логам и есть корень от которого будут идти следующие ветки
+            if "INFO" in line and values[0] not in tree:
+                tree[values[0]] = BinaryTreeNode(val=values[0])
+
+            #  Создаем для левой части
+            elif "left" in line:
+                left = BinaryTreeNode(val=values[1])
+                tree[values[1]] = left
+                tree[values[0]].left = tree[values[1]]
+
+            # Создаем для правой части
+            elif "right" in line:
+                right = BinaryTreeNode(val=values[1])
+                tree[values[1]] = right
+                tree[values[0]].right = tree[values[1]]
+
+    bingo = search(tree)
+    return BinaryTreeNode(bingo)
 
 
 if __name__ == "__main__":
@@ -79,7 +130,11 @@ if __name__ == "__main__":
         level=logging.DEBUG,
         format="%(levelname)s:%(message)s",
         filename="walk_log_4.txt",
+        filemode='w'
     )
 
     root = get_tree(7)
     walk(root)
+
+    result = restore_tree('walk_log_4.txt')
+    print(result)

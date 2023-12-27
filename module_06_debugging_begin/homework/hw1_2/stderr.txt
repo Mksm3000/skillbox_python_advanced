@@ -1,0 +1,52 @@
+10:46:40 - INFO - <module>: 99 - Вы пытаетесь аутентифицироваться в Skillbox
+10:46:44 - INFO - <module>: 112 - У вас есть 2 попыток
+10:46:44 - DEBUG - input_and_check_password: 71 - Начало input_and_check_password
+10:46:51 - WARNING - is_strong_password: 52 - Вы ввели слишком короткий пароль (меньше 8 символов).
+10:46:51 - DEBUG - input_and_check_password: 71 - Начало input_and_check_password
+10:46:59 - WARNING - is_strong_password: 52 - Вы ввели слишком короткий пароль (меньше 8 символов).
+10:46:59 - ERROR - <module>: 123 - Пользователь ввёл неправильный пароль 2 раз(а)!
+10:53:44 - INFO - <module>: 99 - Вы пытаетесь аутентифицироваться в Skillbox
+10:53:48 - INFO - <module>: 112 - У вас есть 2 попыток
+10:53:48 - DEBUG - input_and_check_password: 71 - Начало input_and_check_password
+10:57:51 - INFO - <module>: 99 - Вы пытаетесь аутентифицироваться в Skillbox
+10:57:54 - INFO - <module>: 112 - У вас есть 2 попыток
+10:57:54 - DEBUG - input_and_check_password: 71 - Начало input_and_check_password
+10:58:03 - WARNING - is_strong_password: 49 - Вы ввели английское слово.
+10:58:03 - DEBUG - input_and_check_password: 71 - Начало input_and_check_password
+10:58:08 - WARNING - is_strong_password: 49 - Вы ввели английское слово.
+10:58:08 - ERROR - <module>: 126 - Пользователь ввёл неправильный пароль 2 раз(а)!
+11:13:54 - INFO - <module>: 100 - Вы пытаетесь аутентифицироваться в Skillbox
+11:13:57 - INFO - <module>: 113 - У вас есть 2 попыток
+11:13:58 - DEBUG - input_and_check_password: 72 - Начало input_and_check_password
+11:14:15 - WARNING - is_strong_password: 62 - Вы ввели пароль без маленькой буквы.
+11:14:15 - DEBUG - input_and_check_password: 72 - Начало input_and_check_password
+11:14:33 - WARNING - is_strong_password: 62 - Вы ввели пароль без маленькой буквы.
+11:14:33 - ERROR - <module>: 125 - Пользователь ввёл неправильный пароль 2 раз(а)!
+11:17:22 - INFO - <module>: 100 - Вы пытаетесь аутентифицироваться в Skillbox
+11:17:25 - INFO - <module>: 113 - У вас есть 2 попыток
+11:17:25 - DEBUG - input_and_check_password: 72 - Начало input_and_check_password
+11:17:36 - WARNING - is_strong_password: 65 - Вы ввели пароль без большой буквы.
+11:17:36 - DEBUG - input_and_check_password: 72 - Начало input_and_check_password
+11:17:44 - WARNING - input_and_check_password: 79 - Вы ввели слишком слабый пароль
+11:17:44 - ERROR - <module>: 125 - Пользователь ввёл неправильный пароль 2 раз(а)!
+11:20:07 - INFO - <module>: 101 - Вы пытаетесь аутентифицироваться в Skillbox
+11:20:10 - INFO - <module>: 114 - У вас есть 2 попыток
+11:20:10 - DEBUG - input_and_check_password: 73 - Начало input_and_check_password
+11:20:26 - WARNING - input_and_check_password: 80 - Вы ввели слишком слабый пароль
+11:20:26 - DEBUG - input_and_check_password: 73 - Начало input_and_check_password
+11:28:14 - INFO - <module>: 101 - Вы пытаетесь аутентифицироваться в Skillbox
+11:28:17 - INFO - <module>: 114 - У вас есть 2 попыток
+11:31:42 - INFO - <module>: 101 - Вы пытаетесь аутентифицироваться в Skillbox
+11:31:45 - INFO - <module>: 114 - У вас есть 3 попыток
+11:31:46 - DEBUG - input_and_check_password: 73 - Начало input_and_check_password
+11:32:07 - WARNING - is_strong_password: 54 - Вы ввели английское слово.
+11:32:07 - DEBUG - input_and_check_password: 73 - Начало input_and_check_password
+11:35:09 - INFO - <module>: 103 - Вы пытаетесь аутентифицироваться в Skillbox
+11:35:12 - INFO - <module>: 116 - У вас есть 3 попыток
+11:35:12 - DEBUG - input_and_check_password: 75 - Начало input_and_check_password
+11:35:24 - WARNING - is_strong_password: 56 - Вы ввели английское слово.
+11:35:24 - DEBUG - input_and_check_password: 75 - Начало input_and_check_password
+11:35:41 - WARNING - is_strong_password: 53 - Вы ввели слишком короткий пароль (меньше 8 символов).
+11:35:41 - DEBUG - input_and_check_password: 75 - Начало input_and_check_password
+11:35:46 - WARNING - is_strong_password: 53 - Вы ввели слишком короткий пароль (меньше 8 символов).
+11:35:46 - ERROR - <module>: 130 - Пользователь ввёл неправильный пароль 3 раз(а)!

@@ -1,0 +1,4 @@
+
+{"time": "15:03:48", "level": "info", "message": "Сообщение"}
+{"time": "15:03:48", "level": "error", "message": "Кавычка)'"}
+{"time": "15:03:48", "level": "debug", "message": "Еще одно сообщение"}
