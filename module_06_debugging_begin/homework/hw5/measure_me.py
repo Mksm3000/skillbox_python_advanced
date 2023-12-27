@@ -8,9 +8,34 @@
 """
 import logging
 import random
+import subprocess
 from typing import List
 
 logger = logging.getLogger(__name__)
+
+
+def convert_str_to_float(element: str) -> float:
+    hour, min, sec = element.split(':')
+    sec, millisec = sec[:2], sec[2:]
+    return float(hour) * 3600 + float(min) * 60 + float(sec) + float('0.' + millisec)
+
+
+def convert_list_to_mean(income: list) -> float:
+    table = list()
+    temp_list = list()
+
+    for element in income:
+        element_ = element.split(' - ')
+        name = element_[-1]
+        if name == 'Enter measure_me':
+            temp_list.append(convert_str_to_float(element_[0]))
+        else:
+            temp_list.append(convert_str_to_float(element_[0]))
+            differ = abs(temp_list[0] - temp_list[1])
+            table.append(differ)
+            temp_list = list()
+
+    return sum(table) / len(table)
 
 
 def get_data_line(sz: int) -> List[int]:
@@ -60,7 +85,18 @@ def measure_me(nums: List[int]) -> List[List[int]]:
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level="DEBUG")
+    logging.basicConfig(level="DEBUG",
+                        filemode='w',
+                        filename='measure_logger.log',
+                        format="%(asctime)s - %(levelname)s - %(funcName)s: %(lineno)d - %(message)s",
+                        datefmt='%H:%M:%s')
     for it in range(15):
         data_line = get_data_line(10 ** 3)
         measure_me(data_line)
+
+    command = "grep -E '(Enter measure_me|Leave measure_me)' measure_logger.log"
+    result = subprocess.run(command, capture_output=True, shell=True)
+
+    data = list(filter(None, result.stdout.decode().split('\n')))
+    answer = convert_list_to_mean(data)
+    print(f'Среднее время выполнения функции measure_me - {answer} сек')
