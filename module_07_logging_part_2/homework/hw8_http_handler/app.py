@@ -1,10 +1,13 @@
 import logging
-import sys
+from logging import config
+
+from config_dict import dict_config
 from utils import string_to_operator
 
-logging.basicConfig(level="DEBUG",
-                    stream=sys.stdout)
+logging.config.dictConfig(dict_config)
+
 app_logger = logging.getLogger('app_logger')
+app_logger.setLevel(level="DEBUG")
 
 
 def calc(args):
@@ -45,4 +48,4 @@ def calc(args):
 
 if __name__ == '__main__':
     # calc(sys.argv[1:])
-    calc('a+3')
+    calc('a+9')

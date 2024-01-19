@@ -1,10 +1,15 @@
-import logging
 import sys
 from utils import string_to_operator
+import logging
+from logger_helper import get_logger
+
 
 logging.basicConfig(level="DEBUG",
-                    stream=sys.stdout)
-app_logger = logging.getLogger('app_logger')
+                    stream=sys.stdout,
+                    format='%(levelname)s | %(name)s | %(asctime)s | %(lineno)d | %(message)s',
+                    datefmt='%d-%m-%Y %H:%M:%S')
+
+app_logger = get_logger('app_logger')
 
 
 def calc(args):
@@ -45,4 +50,4 @@ def calc(args):
 
 if __name__ == '__main__':
     # calc(sys.argv[1:])
-    calc('a+3')
+    calc('1+3')
