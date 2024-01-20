@@ -1,10 +1,14 @@
-import sys
-from typing import Union, Callable
-from operator import sub, mul, truediv, add
 import logging
+from logging import config
+from operator import sub, mul, truediv, add
+from typing import Union, Callable
+
+from config_dict import dict_config
+
+logging.config.dictConfig(dict_config)
 
 util_logger = logging.getLogger('util_logger')
-util_logger.setLevel(level="WARNING")
+util_logger.setLevel(level="DEBUG")
 
 OPERATORS = {
     '+': add,

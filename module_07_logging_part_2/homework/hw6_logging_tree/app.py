@@ -1,13 +1,23 @@
 import logging
-import sys
-from utils import string_to_operator
+from logging import config
 
-logging.basicConfig(level="DEBUG",
-                    stream=sys.stdout)
+from config_dict import dict_config
+from utils import string_to_operator
+import logging_tree
+
+logging_tree.printout()
+
+logging.config.dictConfig(dict_config)
+
 app_logger = logging.getLogger('app_logger')
+app_logger.setLevel(level="DEBUG")
 
 
 def calc(args):
+
+    with open(file='logging_tree.txt', mode='w', encoding='utf-8') as file:
+        file.write(logging_tree.format.build_description())
+
     # print("Arguments: ", args)
     app_logger.info(msg=f'Arguments: {args}')
 
@@ -45,4 +55,4 @@ def calc(args):
 
 if __name__ == '__main__':
     # calc(sys.argv[1:])
-    calc('a+3')
+    calc('4+3')
